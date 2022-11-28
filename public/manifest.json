@@ -1,25 +1,47 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
+  "name": "Multi Clipboard",
+  "description" : "산업체 핸즈온 프로젝트",
+  "version": "1.0.0",
+  "short_name": "MulClip",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "clipboardRead",
+    "clipboardWrite",
+    "activeTab",
+    "scripting",
+    "tabs"
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background":{
+    "page":"background.html",
+    "persistent":true
+  },
+  "content_scripts": [
+    {
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": [
+            "content.js"
+        ]
+    }
+],
+  "commands":{
+    "copy":{
+      "suggested_key":{
+        "default":"Ctrl+Shift+1"
+      },
+      "description":"copy",
+      "global":true
+    },
+    "paste":{
+      "suggested_key":{
+        "default":"Ctrl+Shift+2"
+      },
+      "description":"paste",
+      "global":true
+    }
+  }
 }
